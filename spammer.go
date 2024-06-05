@@ -9,12 +9,9 @@ import (
 
 func RunPipeline(cmds ...cmd) {
 	outChans := make([]chan interface{}, 0, len(cmds)+1)
-	for i := range len(cmds) + 1 {
-		if i == 0 {
-			outChans = append(outChans, nil)
-			continue
-		}
+	outChans = append(outChans, nil)
 
+	for range len(cmds) {
 		outChans = append(outChans, make(chan interface{}))
 	}
 
